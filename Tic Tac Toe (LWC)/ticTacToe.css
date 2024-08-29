@@ -1,0 +1,136 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.score-panel {
+    text-align: left;
+    margin-bottom: 12px;
+    font-size: 1.3rem;
+    color: white;
+    height: 3rem;
+    background: black;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 8px;
+    grid-row-gap: 8px;
+    background: #0176d3;
+    padding: 1rem;
+    border-radius: 4px;
+    box-shadow: 8px 9px 26px 0 rgba(46, 61, 73, 0.5);
+}
+
+.grid-container .box {
+    height: 5rem;
+    width: 5rem;
+    margin: 0.2rem 0.2rem;
+    background: #f03d5f;
+    font-size: 0;
+    color: #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.grid-container .box:hover {
+    transform: scale(1.1);
+}
+
+.grid-container .box.open {
+    transform: rotateY(0);
+    background: #181818;
+    cursor: default;
+    animation-name: flipInY;
+    -webkit-backface-visibility: visible !important;
+    backface-visibility: visible !important;
+    animation-duration: 0.75s;
+}
+
+.grid-container .box.show {
+    font-size: 33px;
+    visibility: visible !important;
+    opacity: 100 !important;
+}
+
+.grid-container .box.disabled {
+    pointer-events: none;
+    opacity: 0.9;
+}
+
+.winner-panel {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.winner-message {
+    font-size: 18px;
+    font-weight: bold;
+    color: #e74c3c; /* Red for winner message */
+}
+
+.reset-button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #34495e; /* Dark Blue */
+    border: none;
+    border-radius: 2px solid black;
+}
+
+/* Winning Box Style */
+.grid-container .winning-box {
+    background-color: lawngreen;
+    color: white; /* Adjust text/icon color for better contrast */
+    animation: pulse 0.4s infinite alternate;
+    transition: background-color 0.5s ease;
+}
+
+/*Amimation*/
+@keyframes pulse {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes flipInY {
+    from {
+        transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+        animation-timing-function: ease-in;
+        opacity: 0;
+    }
+
+    40% {
+        transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+        animation-timing-function: ease-in;
+    }
+
+    60% {
+        transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+        opacity: 1;
+    }
+
+    80% {
+        transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+    }
+
+    to {
+        transform: perspective(400px);
+    }
+}

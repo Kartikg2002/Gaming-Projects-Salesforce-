@@ -1,0 +1,34 @@
+<template>
+    <div class="container">
+        <lightning-card title="Tic Tac Toe Game">
+            <div class="slds-var-p-around_medium">
+                <!-- Score Panel -->
+                <section class="score-panel">
+                    <span class="player player1">Player A: {player1}</span>
+                    <span class="player player2">Player B: {player2}</span>
+                </section>
+
+                <!-- Game Panel -->
+                <section class="game-panel">
+                    <ul class="grid-container">
+                        <template for:each={boxes} for:item="box">
+                            <li class={box.listClass} key={box.id} data-id={box.id} onclick={displayBox}>
+                                <i class={box.icon}></i>
+                            </li>
+                        </template>
+                    </ul>
+                </section>
+
+                <!-- Winner Panel -->
+                <section class="winner-panel">
+                    <template if:true={winner}>
+                        <p class="winner-message">{winMess}</p>
+                    </template>
+                    <template if:true={isGameOver}>
+                        <button onclick={resetGame} class="reset-button">Reset Game</button>
+                    </template>
+                </section>
+            </div>
+        </lightning-card>
+    </div>
+</template>
